@@ -1,0 +1,31 @@
+---
+title: "class_02_06"
+author: "Amy Zhou"
+date: "02-06-2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(gov.1005.data)
+```
+
+
+```{r}
+age_data <- congress %>% 
+  filter(party %in% c("D", "R")) %>% 
+  group_by(year, party) %>% 
+  summarise(avg_age = mean(age))
+```
+
+
+```{r}
+ggplot(data = age_data, aes(x = year, y = avg_age, color = party)) + 
+  geom_line()
+```
+
+labs
+scale_color_manual
+scale_x_continuous
+annotate
